@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://cllxvom2safnd"]
+
+[ext_resource type="Script" uid="uid://bjovypt64k1um" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://d0vxka7tv0ohj" path="res://assets/arena.png" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d2xrdmm241hny" path="res://manager/EnemyManager.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://umw8ngwp6h48" path="res://ui/game_ui/game_ui.tscn" id="3_1bvp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(934, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(24, 518)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ig7tw")
+
+[node name="EnemyManager" parent="." node_paths=PackedStringArray("enemy_spawn_root", "spawn_rect") instance=ExtResource("2_h2yge")]
+enemy_spawn_root = NodePath("../YSortRoot")
+spawn_rect = NodePath("../SpawnRect")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://dtilfbcbxlb73", "uid://557t7vkelsro")
+spawn_path = NodePath("../YSortRoot")
+
+[node name="GameUi" parent="." node_paths=PackedStringArray("enemy_manager") instance=ExtResource("3_1bvp3")]
+enemy_manager = NodePath("../EnemyManager")
+
+[node name="PlayerSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(320, 185)
+
+[node name="Arena" type="Sprite2D" parent="."]
+position = Vector2(320, 185)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0xm2m")
+metadata/_edit_lock_ = true
+
+[node name="StaticBodies" type="Node2D" parent="."]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBodies"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D"]
+position = Vector2(322, -86)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBodies"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D2"]
+position = Vector2(323, 437)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBodies"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D3"]
+position = Vector2(783, 179)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="StaticBodies"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D4"]
+position = Vector2(-141, 183)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="SpawnRect" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(828, 432)
+offset_left = -92.0
+offset_top = -39.0
+offset_right = 736.0
+offset_bottom = 393.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="BackgroundEffects" type="Node2D" parent="."]
+
+[node name="BackgroundMask" type="Sprite2D" parent="BackgroundEffects"]
+unique_name_in_owner = true
+light_mask = 0
+position = Vector2(319.49994, 176.49998)
+scale = Vector2(2.0066667, 2.02)
+
+[node name="YSortRoot" type="Node2D" parent="."]
+y_sort_enabled = true
