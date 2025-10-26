@@ -1,29 +1,41 @@
 class_name Bullet
 extends Node2D
 
-const SPEED : int = 600
-var bullet_direction : Vector2
+const SPEED: int = 600
 
-@onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var life_timer: Timer = $LifeTimer
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
+
+var direction: Vector2
+var source_peer_id: int
+var damage: int = 1
+
 
 func _ready() -> void:
+	hitbox_component.damage = damage
+	hitbox_component.source_peer_id = source_peer_id
 	hitbox_component.hit_hurtbox.connect(_on_hit_hurtbox)
-	life_timer.timeout.connect(_on_lifetimer_timeout)
+	life_timer.timeout.connect(_on_life_timer_timeout)
 
-func _process(delta : float):
-	global_position += bullet_direction * SPEED * delta
 
-func start(direction : Vector2):
-	bullet_direction = direction
+func _process(delta: float):
+	global_position += direction * SPEED * delta
+
+
+func start(dir: Vector2):
+	direction = dir
 	rotation = direction.angle()
 
-func _on_lifetimer_timeout():
+
+func register_collision():
+	hitbox_component.is_hit_handled = true
+	queue_free()
+
+
+func _on_life_timer_timeout():
 	if is_multiplayer_authority():
 		queue_free()
 
-func register_collision():
-	queue_free()
 
-func _on_hit_hurtbox(_hurtbox : HurtboxComponent):
+func _on_hit_hurtbox(_hurtbox_component: HurtboxComponent):
 	register_collision()

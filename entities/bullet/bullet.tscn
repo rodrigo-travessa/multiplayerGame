@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtilfbcbxlb73"]
+[gd_scene load_steps=6 format=3 uid="uid://bqjombuvx45oe"]
 
-[ext_resource type="Script" uid="uid://dr3a1yu31dk1b" path="res://entities/bullet/bullet.gd" id="1_2kyv7"]
-[ext_resource type="Texture2D" uid="uid://b8876nhtfx1yd" path="res://entities/bullet/bullet.png" id="2_5h0jh"]
-[ext_resource type="PackedScene" uid="uid://cw4hhyexlwfus" path="res://component/hitbox_component.tscn" id="3_5h0jh"]
+[ext_resource type="Script" uid="uid://dkm5h8m7m7skg" path="res://entities/bullet/bullet.gd" id="1_2kyv7"]
+[ext_resource type="Texture2D" uid="uid://bcfjaid6kvli3" path="res://entities/bullet/bullet.png" id="1_78c8h"]
+[ext_resource type="PackedScene" uid="uid://ca7d70ujba62a" path="res://component/hitbox_component.tscn" id="2_5h0jh"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2kyv7"]
 properties/0/path = NodePath(".:global_position")
@@ -11,12 +11,11 @@ properties/0/replication_mode = 0
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 0
-properties/2/path = NodePath(".:bullet_direction")
+properties/2/path = NodePath(".:direction")
 properties/2/spawn = true
 properties/2/replication_mode = 0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_25cl0"]
-radius = 7.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_5h0jh"]
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_2kyv7")
@@ -29,10 +28,10 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_5h0jh")
-
-[node name="HitboxComponent" parent="." instance=ExtResource("3_5h0jh")]
+[node name="HitboxComponent" parent="." instance=ExtResource("2_5h0jh")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("CircleShape2D_25cl0")
+shape = SubResource("CircleShape2D_5h0jh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_78c8h")

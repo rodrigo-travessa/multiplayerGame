@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://kew6ccjrwycd"]
+[gd_scene load_steps=2 format=3 uid="uid://dgistbjkrs4hx"]
 
-[ext_resource type="Script" uid="uid://dbeitln1vi4uk" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="Script" uid="uid://cbi2s1lqp560r" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -11,40 +11,23 @@ grow_vertical = 2
 script = ExtResource("1_uhj5c")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(132, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="SinglePlayerButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Single Player
-"
+text = "Single Player"
 
-[node name="MultiPlayerButton" type="Button" parent="VBoxContainer"]
+[node name="MultiplayerButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Multiplayer
-"
+text = "Multiplayer"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Quit
-"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "127.0.0.1"
-placeholder_text = "127.0.0.1"
-
-[node name="HostButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Host"
-
-[node name="JoinButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Join"
+text = "Quit"

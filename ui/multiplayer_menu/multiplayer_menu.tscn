@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgnymwf4b6gmk"]
+[gd_scene load_steps=2 format=3 uid="uid://dvycpc5u8pjuc"]
 
-[ext_resource type="Script" uid="uid://dxv7wq2108kin" path="res://ui/multiplayer_menu/multiplayer_menu.gd" id="1_tvsvp"]
+[ext_resource type="Script" uid="uid://jdh1gw2ic05e" path="res://ui/multiplayer_menu/multiplayer_menu.gd" id="1_tvsvp"]
 
 [node name="MultiplayerMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -15,7 +15,7 @@ theme_override_constants/margin_bottom = 16
 script = ExtResource("1_tvsvp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(256, 16)
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -26,12 +26,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Name:"
+text = "Display Name:"
 
 [node name="DisplayNameTextEdit" type="TextEdit" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "Name"
+placeholder_text = "Display Name"
 scroll_fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -49,8 +49,7 @@ text = "Port:"
 unique_name_in_owner = true
 layout_mode = 2
 text = "3000"
-placeholder_text = "Host Port
-"
+placeholder_text = "Host Port"
 scroll_fit_content_height = true
 
 [node name="HostButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
@@ -62,11 +61,11 @@ text = "Host"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "IP Address:"
 
-[node name="IpAddressTextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="IPAddressTextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "127.0.0.1"
@@ -83,45 +82,48 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Back
-"
+text = "Back"
 
 [node name="ErrorContainer" type="MarginContainer" parent="."]
-unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 0
 
-[node name="Panel" type="PanelContainer" parent="ErrorContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ErrorContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="ErrorContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="ErrorContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ErrorContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ErrorContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ErrorContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.129412, 0.592157, 0.941176, 1)
+text = "Error!"
+
+[node name="ClientErrorLabel" type="Label" parent="ErrorContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.129412, 0.592157, 0.941176, 1)
+text = "An error occurred when connecting to the server."
+
+[node name="ServerErrorLabel" type="Label" parent="ErrorContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.129412, 0.592157, 0.941176, 1)
+text = "An error occurred when creating the server."
+
+[node name="ErrorConfirmButton" type="Button" parent="ErrorContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 11
-
-[node name="ServerErrorLabel" type="Label" parent="ErrorContainer/Panel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Error when creating the server"
-
-[node name="ClientErrorLabel" type="Label" parent="ErrorContainer/Panel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Erro when connecting to the server"
-
-[node name="ErrorButton" type="Button" parent="ErrorContainer/Panel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "OK
-"
+text = "Ok"
